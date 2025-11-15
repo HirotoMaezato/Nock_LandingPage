@@ -662,7 +662,7 @@
     <nav>
         <div class="nav-content">
             <div class="logo">KnowledgeFlow</div>
-            <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+            <a href="https://forms.gle/wtqQupz7eKTMcdk7A" class="nav-cta" target="_blank" rel="noopener noreferrer">Join Waitlist</a>
         </div>
     </nav>
 
@@ -677,7 +677,7 @@
             組織の知識が自動で流れ出す、全く新しいコミュニケーション基盤
         </p>
         <div class="cta-group">
-            <a href="#waitlist" class="btn-primary">ウェイティングリストに登録</a>
+            <a href="https://forms.gle/wtqQupz7eKTMcdk7A" class="btn-primary" target="_blank" rel="noopener noreferrer">ウェイティングリストに登録</a>
             <a href="#features" class="btn-secondary">詳しく見る</a>
         </div>
     </section>
@@ -1051,7 +1051,7 @@
                     <li>50人まで</li>
                     <li>メールサポート</li>
                 </ul>
-                <button class="btn-primary" style="width: 100%;">始める</button>
+                <a href="https://forms.gle/wtqQupz7eKTMcdk7A" class="btn-primary" style="width: 100%; display: inline-block; text-align: center;" target="_blank" rel="noopener noreferrer">始める</a>
             </div>
             
             <div class="pricing-card featured">
@@ -1068,7 +1068,7 @@
                     <li>優先サポート</li>
                     <li>Google Workspace連携</li>
                 </ul>
-                <button class="btn-primary" style="width: 100%;">始める</button>
+                <a href="https://forms.gle/wtqQupz7eKTMcdk7A" class="btn-primary" style="width: 100%; display: inline-block; text-align: center;" target="_blank" rel="noopener noreferrer">始める</a>
             </div>
             
             <div class="pricing-card">
@@ -1084,7 +1084,7 @@
                     <li>オンボーディング支援</li>
                     <li>SLA保証</li>
                 </ul>
-                <button class="btn-secondary" style="width: 100%;">お問い合わせ</button>
+                <a href="https://forms.gle/wtqQupz7eKTMcdk7A" class="btn-secondary" style="width: 100%; display: inline-block; text-align: center;" target="_blank" rel="noopener noreferrer">お問い合わせ</a>
             </div>
         </div>
         
@@ -1132,10 +1132,12 @@
         <div class="cta-content">
             <h2 class="cta-title">今すぐ始めましょう</h2>
             <p class="cta-subtitle">ベータ版は先着100社限定。初年度50% OFF</p>
-            <form class="email-form" onsubmit="handleSubmit(event)">
+            <div class="email-form">
                 <input type="email" class="email-input" placeholder="メールアドレス" required>
-                <button type="submit" class="btn-primary">登録する</button>
-            </form>
+                <a href="https://forms.gle/wtqQupz7eKTMcdk7A" class="btn-primary" target="_blank" rel="noopener noreferrer" style="display: inline-flex; align-items: center; justify-content: center;">
+                    登録する
+                </a>
+            </div>
         </div>
     </section>
 
@@ -1147,13 +1149,6 @@
     </footer>
 
     <script>
-        function handleSubmit(event) {
-            event.preventDefault();
-            const email = event.target.querySelector('input').value;
-            alert('ご登録ありがとうございます！\n\n' + email + ' 宛に詳細情報をお送りします。');
-            event.target.reset();
-        }
-
         // Smooth scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
