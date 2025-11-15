@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KnowledgeFlow - AI-Native Communication</title>
+    <style>
+        :root {
+            --primary: #0066FF;
+            --text-primary: #0A0A0A;
+            --text-secondary: #6B6B6B;
+            --border: #E5E5E5;
+            --background: #FFFFFF;
+            --background-subtle: #FAFAFA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+            line-height: 1.5;
+            color: var(--text-primary);
+            background: var(--background);
+            -webkit-font-smoothing: antialiased;
+            font-size: 16px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .nav-cta {
+            background: var(--primary);
+            color: white;
+            padding: 0.5rem 1.25rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: opacity 0.2s;
+        }
+
+        .nav-cta:hover {
+            opacity: 0.9;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 10rem 2rem 6rem;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--background-subtle);
+            border: 1px solid var(--border);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 4.5rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 4rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px rgba(0, 102, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--text-primary);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            transition: border-color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+        }
+
+        /* Product Screenshot */
+        .product-shot {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem 8rem;
+        }
+
+        .screenshot {
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            background: var(--background-subtle);
+            padding: 6rem 2rem;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .stats-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            margin-top: 0.5rem;
+        }
+
+        /* Features Section */
+        .section {
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 6rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .feature {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: center;
+            margin-bottom: 10rem;
+        }
+
+        .feature:nth-child(even) {
+            direction: rtl;
+        }
+
+        .feature:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .feature-content h3 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .feature-content p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .feature-visual {
+            width: 100%;
+            aspect-ratio: 4/3;
+            background: var(--background-subtle);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            background: var(--background-subtle);
+            padding: 8rem 2rem;
+        }
+
+        .comparison-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .comparison-card {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 3rem;
+            position: relative;
+        }
+
+        .comparison-label {
+            position: absolute;
+            top: -12px;
+            left: 2rem;
+            background: white;
+            padding: 0.25rem 1rem;
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .comparison-label.before {
+            color: #DC2626;
+            border-color: #FCA5A5;
+            background: #FEF2F2;
+        }
+
+        .comparison-label.after {
+            color: #059669;
+            border-color: #6EE7B7;
+            background: #F0FDF4;
+        }
+
+        .timeline {
+            margin-top: 2rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+        }
+
+        .timeline-time {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            min-width: 60px;
+        }
+
+        .timeline-content {
+            flex: 1;
+            font-size: 0.9375rem;
+            color: var(--text-primary);
+        }
+
+        .result-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        .result-box.negative {
+            background: #FEF2F2;
+            color: #DC2626;
+        }
+
+        .result-box.positive {
+            background: #F0FDF4;
+            color: #059669;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .pricing-grid {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            background: white;
+            transition: box-shadow 0.3s;
+        }
+
+        .pricing-card:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            border-width: 2px;
+            position: relative;
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .plan-name {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .plan-description {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-unit {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+        }
+
+        .price-period {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+
+        .feature-list-pricing {
+            list-style: none;
+            margin: 2rem 0;
+        }
+
+        .feature-list-pricing li {
+            padding: 0.5rem 0;
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .feature-list-pricing li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--background-subtle);
+            padding: 8rem 2rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+
+        .faq-answer {
+            font-size: 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 8rem 2rem;
+            text-align: center;
+            background: white;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .cta-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+        }
+
+        .email-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .email-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .email-input:focus {
+            border-color: var(--primary);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            h1 {
+                font-size: 3.5rem;
+            }
+
+            .feature,
+            .comparison-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .section {
+                padding: 5rem 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .email-form {
+                flex-direction: column;
+            }
+
+            .feature {
+                gap: 3rem;
+                margin-bottom: 5rem;
+            }
+        }
+
+        /* Product Screenshot Placeholder */
+        .screenshot-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        /* Mockup styles */
+        .mockup-container {
+            width: 100%;
+            height: 100%;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chat-message {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            color: white;
+            max-width: 80%;
+        }
+
+        .chat-message.user {
+            align-self: flex-end;
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .chat-message.ai {
+            align-self: flex-start;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">KnowledgeFlow</div>
+            <a href="#waitlist" class="nav-cta">Join Waitlist</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="badge">
+            <span>🚀</span>
+            <span>生成AIネイティブなチャットツール</span>
+        </div>
+        <h1>聞く前に、知っている。</h1>
+        <p class="hero-subtitle">
+            組織の知識が自動で流れ出す、全く新しいコミュニケーション基盤
+        </p>
+        <div class="cta-group">
+            <a href="#waitlist" class="btn-primary">ウェイティングリストに登録</a>
+            <a href="#features" class="btn-secondary">詳しく見る</a>
+        </div>
+    </section>
+
+    <!-- Product Screenshot -->
+    <div class="product-shot">
+        <div class="screenshot">
+            <svg viewBox="0 0 1400 800" xmlns="http://www.w3.org/2000/svg">
+                <!-- Modern chat interface mockup -->
+                <rect width="1400" height="800" fill="#F9FAFB"/>
+                
+                <!-- Sidebar -->
+                <rect x="0" y="0" width="300" height="800" fill="#FFFFFF"/>
+                <rect x="0" y="0" width="300" height="1" fill="#E5E7EB"/>
+                
+                <!-- Sidebar items -->
+                <g opacity="0.4">
+                    <rect x="20" y="20" width="40" height="40" rx="8" fill="#667eea"/>
+                    <rect x="75" y="30" width="120" height="10" rx="4" fill="#D1D5DB"/>
+                    <rect x="75" y="45" width="80" height="8" rx="4" fill="#E5E7EB"/>
+                </g>
+                
+                <g opacity="0.4">
+                    <rect x="20" y="80" width="40" height="40" rx="8" fill="#6EE7B7"/>
+                    <rect x="75" y="90" width="140" height="10" rx="4" fill="#D1D5DB"/>
+                    <rect x="75" y="105" width="100" height="8" rx="4" fill="#E5E7EB"/>
+                </g>
+                
+                <g>
+                    <rect x="20" y="140" width="40" height="40" rx="8" fill="#0066FF"/>
+                    <rect x="75" y="150" width="100" height="10" rx="4" fill="#0066FF"/>
+                    <rect x="75" y="165" width="60" height="8" rx="4" fill="#93C5FD"/>
+                </g>
+                
+                <g opacity="0.4">
+                    <rect x="20" y="200" width="40" height="40" rx="8" fill="#F59E0B"/>
+                    <rect x="75" y="210" width="110" height="10" rx="4" fill="#D1D5DB"/>
+                    <rect x="75" y="225" width="90" height="8" rx="4" fill="#E5E7EB"/>
+                </g>
+                
+                <!-- Main chat area -->
+                <rect x="300" y="0" width="1100" height="60" fill="#FFFFFF"/>
+                <rect x="300" y="60" width="1100" height="1" fill="#E5E7EB"/>
+                
+                <!-- Chat header -->
+                <circle cx="340" cy="30" r="16" fill="#0066FF"/>
+                <rect x="370" y="22" width="150" height="12" rx="4" fill="#1F2937"/>
+                <rect x="370" y="38" width="80" height="8" rx="4" fill="#9CA3AF"/>
+                
+                <!-- AI badge -->
+                <rect x="1280" y="18" width="80" height="24" rx="12" fill="#F0FDF4"/>
+                <text x="1320" y="34" text-anchor="middle" font-size="11" fill="#059669" font-weight="600">AI Active</text>
+                
+                <!-- Messages -->
+                <!-- AI Message 1 -->
+                <g transform="translate(340, 100)">
+                    <rect width="500" height="80" rx="12" fill="#F3F4F6"/>
+                    <rect x="16" y="16" width="300" height="12" rx="4" fill="#6B7280"/>
+                    <rect x="16" y="36" width="450" height="10" rx="4" fill="#9CA3AF"/>
+                    <rect x="16" y="52" width="400" height="10" rx="4" fill="#9CA3AF"/>
+                </g>
+                
+                <!-- User Message -->
+                <g transform="translate(700, 210)">
+                    <rect width="400" height="60" rx="12" fill="#0066FF"/>
+                    <rect x="16" y="16" width="250" height="12" rx="4" fill="rgba(255,255,255,0.9)"/>
+                    <rect x="16" y="36" width="320" height="10" rx="4" fill="rgba(255,255,255,0.7)"/>
+                </g>
+                
+                <!-- AI Message 2 with suggestions -->
+                <g transform="translate(340, 300)">
+                    <rect width="600" height="120" rx="12" fill="#F3F4F6"/>
+                    <rect x="16" y="16" width="350" height="12" rx="4" fill="#6B7280"/>
+                    <rect x="16" y="36" width="550" height="10" rx="4" fill="#9CA3AF"/>
+                    <rect x="16" y="52" width="500" height="10" rx="4" fill="#9CA3AF"/>
+                    
+                    <!-- Suggestion chips -->
+                    <rect x="16" y="80" width="140" height="28" rx="14" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+                    <rect x="170" y="80" width="160" height="28" rx="14" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+                    <rect x="345" y="80" width="180" height="28" rx="14" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+                </g>
+                
+                <!-- User Message 2 -->
+                <g transform="translate(650, 450)">
+                    <rect width="450" height="70" rx="12" fill="#0066FF"/>
+                    <rect x="16" y="16" width="300" height="12" rx="4" fill="rgba(255,255,255,0.9)"/>
+                    <rect x="16" y="36" width="380" height="10" rx="4" fill="rgba(255,255,255,0.7)"/>
+                </g>
+                
+                <!-- AI is typing indicator -->
+                <g transform="translate(340, 550)">
+                    <rect width="120" height="40" rx="12" fill="#F3F4F6"/>
+                    <circle cx="35" cy="20" r="4" fill="#9CA3AF">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="55" cy="20" r="4" fill="#9CA3AF">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.2s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="75" cy="20" r="4" fill="#9CA3AF">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="1.5s" begin="0.4s" repeatCount="indefinite"/>
+                    </circle>
+                </g>
+                
+                <!-- Input area -->
+                <rect x="320" y="720" width="1060" height="60" rx="12" fill="#FFFFFF" stroke="#E5E7EB" stroke-width="1"/>
+                <rect x="340" y="738" width="200" height="10" rx="4" fill="#D1D5DB"/>
+                <circle cx="1340" cy="750" r="18" fill="#0066FF"/>
+                <path d="M 1335 750 L 1342 750 L 1342 743 M 1342 750 L 1349 745" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="stats-container">
+            <div>
+                <div class="stat-number">6時間</div>
+                <div class="stat-label">週あたりの待ち時間を削減</div>
+            </div>
+            <div>
+                <div class="stat-number">90%</div>
+                <div class="stat-label">質問が即座に解決</div>
+            </div>
+            <div>
+                <div class="stat-number">3分</div>
+                <div class="stat-label">平均回答時間</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="section-header">
+            <h2 class="section-title">3つのコア機能</h2>
+            <p class="section-description">
+                組織の知識が自動で流通する仕組み
+            </p>
+        </div>
+
+        <!-- Feature 1 -->
+        <div class="feature">
+            <div class="feature-content">
+                <h3>個人RAG</h3>
+                <p>すべての社員に専用の知識ベースが自動生成されます。会話、ドキュメント、会議録画、すべてが検索可能に。本人に聞く前に、まずRAGに聞けます。</p>
+                <ul class="feature-list">
+                    <li>会話・資料・会議を自動でインデックス化</li>
+                    <li>本人への通知設定が可能</li>
+                    <li>過去の知見に即座にアクセス</li>
+                    <li>コンテキストを保持した回答</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="600" height="450" fill="#FAFAFA"/>
+                    
+                    <!-- Person card -->
+                    <rect x="50" y="50" width="500" height="350" rx="12" fill="white"/>
+                    
+                    <!-- Avatar -->
+                    <circle cx="300" cy="130" r="50" fill="#0066FF" opacity="0.1"/>
+                    <circle cx="300" cy="130" r="40" fill="#0066FF"/>
+                    <text x="300" y="145" text-anchor="middle" font-size="32" fill="white">👤</text>
+                    
+                    <rect x="230" y="200" width="140" height="16" rx="8" fill="#1F2937"/>
+                    <rect x="250" y="225" width="100" height="12" rx="6" fill="#9CA3AF"/>
+                    
+                    <!-- Knowledge nodes -->
+                    <g opacity="0.8">
+                        <circle cx="150" cy="300" r="35" fill="#F3F4F6" stroke="#0066FF" stroke-width="2"/>
+                        <text x="150" y="310" text-anchor="middle" font-size="12" fill="#6B7280" font-weight="500">会話</text>
+                        
+                        <circle cx="300" cy="330" r="35" fill="#F3F4F6" stroke="#0066FF" stroke-width="2"/>
+                        <text x="300" y="340" text-anchor="middle" font-size="12" fill="#6B7280" font-weight="500">資料</text>
+                        
+                        <circle cx="450" cy="300" r="35" fill="#F3F4F6" stroke="#0066FF" stroke-width="2"/>
+                        <text x="450" y="310" text-anchor="middle" font-size="12" fill="#6B7280" font-weight="500">会議</text>
+                    </g>
+                    
+                    <!-- Connection lines -->
+                    <line x1="270" y1="170" x2="180" y2="270" stroke="#E5E7EB" stroke-width="2" opacity="0.5"/>
+                    <line x1="300" y1="170" x2="300" y2="295" stroke="#E5E7EB" stroke-width="2" opacity="0.5"/>
+                    <line x1="330" y1="170" x2="420" y2="270" stroke="#E5E7EB" stroke-width="2" opacity="0.5"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="feature">
+            <div class="feature-content">
+                <h3>夜間Agent</h3>
+                <p>気になるトピックを設定すると、AIが夜間に全社の情報をクロール。詳しい人を見つけて質問し、朝にはサマリレポートが受信トレイに届きます。</p>
+                <ul class="feature-list">
+                    <li>トピック設定で自動クロール</li>
+                    <li>関連する専門家を自動発見</li>
+                    <li>朝にはレポートが完成</li>
+                    <li>能動的な情報収集</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="600" height="450" fill="#FAFAFA"/>
+                    
+                    <!-- Night theme background -->
+                    <rect x="50" y="50" width="500" height="350" rx="12" fill="#1F2937"/>
+                    
+                    <!-- Moon -->
+                    <circle cx="480" cy="100" r="30" fill="#FCD34D" opacity="0.3"/>
+                    <circle cx="470" cy="90" r="30" fill="#1F2937"/>
+                    
+                    <!-- Stars -->
+                    <circle cx="100" cy="80" r="2" fill="white" opacity="0.6"/>
+                    <circle cx="150" cy="100" r="2" fill="white" opacity="0.8"/>
+                    <circle cx="200" cy="85" r="2" fill="white" opacity="0.5"/>
+                    <circle cx="400" cy="120" r="2" fill="white" opacity="0.7"/>
+                    
+                    <!-- Robot agent -->
+                    <rect x="250" y="180" width="100" height="100" rx="12" fill="#0066FF"/>
+                    <circle cx="275" cy="210" r="10" fill="white"/>
+                    <circle cx="325" cy="210" r="10" fill="white"/>
+                    <rect x="275" y="245" width="50" height="20" rx="10" fill="white"/>
+                    
+                    <!-- Search rays -->
+                    <line x1="300" y1="280" x2="150" y2="330" stroke="#6EE7B7" stroke-width="3" opacity="0.5" stroke-dasharray="5,5"/>
+                    <line x1="300" y1="280" x2="450" y2="330" stroke="#6EE7B7" stroke-width="3" opacity="0.5" stroke-dasharray="5,5"/>
+                    
+                    <!-- People indicators -->
+                    <circle cx="150" cy="340" r="20" fill="#374151"/>
+                    <circle cx="450" cy="340" r="20" fill="#374151"/>
+                    
+                    <!-- Report icon -->
+                    <rect x="265" y="320" width="70" height="50" rx="6" fill="#059669"/>
+                    <rect x="280" y="335" width="40" height="4" rx="2" fill="white" opacity="0.8"/>
+                    <rect x="280" y="345" width="30" height="4" rx="2" fill="white" opacity="0.6"/>
+                    <rect x="280" y="355" width="35" height="4" rx="2" fill="white" opacity="0.7"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="feature">
+            <div class="feature-content">
+                <h3>知識の自動流通</h3>
+                <p>「誰が何を知っているか」をAIが自動マッピング。組織の知識が、必要な人に、必要なタイミングで自動的に届きます。サイロ化した情報を解消します。</p>
+                <ul class="feature-list">
+                    <li>専門家を自動発見・マッチング</li>
+                    <li>関連する知見をproactiveに通知</li>
+                    <li>組織横断での知識共有</li>
+                    <li>情報の死蔵を防ぐ</li>
+                </ul>
+            </div>
+            <div class="feature-visual">
+                <svg viewBox="0 0 600 450" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="600" height="450" fill="#FAFAFA"/>
+                    
+                    <rect x="50" y="50" width="500" height="350" rx="12" fill="white"/>
+                    
+                    <!-- Central hub -->
+                    <circle cx="300" cy="225" r="60" fill="#0066FF" opacity="0.1"/>
+                    <circle cx="300" cy="225" r="50" fill="#0066FF"/>
+                    <text x="300" y="235" text-anchor="middle" font-size="16" fill="white" font-weight="600">Hub</text>
+                    
+                    <!-- People nodes -->
+                    <circle cx="150" cy="120" r="35" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="2"/>
+                    <circle cx="450" cy="120" r="35" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="2"/>
+                    <circle cx="150" cy="330" r="35" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="2"/>
+                    <circle cx="450" cy="330" r="35" fill="#F3F4F6" stroke="#D1D5DB" stroke-width="2"/>
+                    
+                    <!-- Arrows -->
+                    <defs>
+                        <marker id="arrowblue" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+                            <polygon points="0 0, 10 5, 0 10" fill="#0066FF" opacity="0.3"/>
+                        </marker>
+                    </defs>
+                    <line x1="180" y1="140" x2="250" y2="195" stroke="#0066FF" stroke-width="3" opacity="0.3" marker-end="url(#arrowblue)"/>
+                    <line x1="420" y1="140" x2="350" y2="195" stroke="#0066FF" stroke-width="3" opacity="0.3" marker-end="url(#arrowblue)"/>
+                    <line x1="180" y1="310" x2="250" y2="255" stroke="#0066FF" stroke-width="3" opacity="0.3" marker-end="url(#arrowblue)"/>
+                    <line x1="420" y1="310" x2="350" y2="255" stroke="#0066FF" stroke-width="3" opacity="0.3" marker-end="url(#arrowblue)"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section">
+        <div class="comparison-container">
+            <div class="section-header">
+                <h2 class="section-title">Before / After</h2>
+                <p class="section-description">
+                    6時間が3分に短縮される世界
+                </p>
+            </div>
+            
+            <div class="comparison-grid">
+                <!-- Before -->
+                <div class="comparison-card">
+                    <div class="comparison-label before">従来のツール</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">9:00</div>
+                            <div class="timeline-content">山田さんに質問メッセージ送信</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">10:30</div>
+                            <div class="timeline-content">まだ返信なし、他の人に聞く</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">12:00</div>
+                            <div class="timeline-content">「佐藤さんが詳しいです」と返信</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">13:00</div>
+                            <div class="timeline-content">佐藤さんに質問メッセージ送信</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">15:00</div>
+                            <div class="timeline-content">やっと答えが分かった</div>
+                        </div>
+                    </div>
+                    <div class="result-box negative">
+                        合計 6時間のロス
+                    </div>
+                </div>
+                
+                <!-- After -->
+                <div class="comparison-card">
+                    <div class="comparison-label after">KnowledgeFlow</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-time">9:00</div>
+                            <div class="timeline-content">山田さんの個人RAGに質問</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">9:01</div>
+                            <div class="timeline-content">RAGから回答取得「佐藤さんがより詳しいです」</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">9:02</div>
+                            <div class="timeline-content">佐藤さんのRAGにも自動で質問、詳細な回答を取得</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-time">9:03</div>
+                            <div class="timeline-content">すべての情報を入手完了</div>
+                        </div>
+                    </div>
+                    <div class="result-box positive">
+                        わずか 3分で完了
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="section-header">
+            <h2 class="section-title">シンプルな料金体系</h2>
+            <p class="section-description">
+                すべてのプランで14日間無料トライアル
+            </p>
+        </div>
+        
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <div class="plan-name">スタートアップ</div>
+                <div class="plan-description">小規模チーム向け</div>
+                <div class="price">¥980<span class="price-unit">/人</span></div>
+                <div class="price-period">月額（年払い）</div>
+                <ul class="feature-list-pricing">
+                    <li>個人RAG機能</li>
+                    <li>基本検索</li>
+                    <li>50人まで</li>
+                    <li>メールサポート</li>
+                </ul>
+                <button class="btn-primary" style="width: 100%;">始める</button>
+            </div>
+            
+            <div class="pricing-card featured">
+                <div class="featured-badge">Most Popular</div>
+                <div class="plan-name">ビジネス</div>
+                <div class="plan-description">成長企業向け</div>
+                <div class="price">¥2,980<span class="price-unit">/人</span></div>
+                <div class="price-period">月額（年払い）</div>
+                <ul class="feature-list-pricing">
+                    <li>すべてのスタートアップ機能</li>
+                    <li>夜間Agent機能</li>
+                    <li>高度な検索・分析</li>
+                    <li>無制限ユーザー</li>
+                    <li>優先サポート</li>
+                    <li>Google Workspace連携</li>
+                </ul>
+                <button class="btn-primary" style="width: 100%;">始める</button>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="plan-name">エンタープライズ</div>
+                <div class="plan-description">大企業向け</div>
+                <div class="price" style="font-size: 2rem;">要相談</div>
+                <div class="price-period">カスタムプラン</div>
+                <ul class="feature-list-pricing">
+                    <li>すべてのビジネス機能</li>
+                    <li>専用環境構築</li>
+                    <li>カスタムインテグレーション</li>
+                    <li>専任サポート</li>
+                    <li>オンボーディング支援</li>
+                    <li>SLA保証</li>
+                </ul>
+                <button class="btn-secondary" style="width: 100%;">お問い合わせ</button>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 3rem; color: var(--text-secondary);">
+            <p style="font-size: 1.125rem;">🎉 ベータ版参加者は<strong style="color: var(--primary);">初年度50% OFF</strong></p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-header">
+            <h2 class="section-title">よくある質問</h2>
+        </div>
+        
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">既存のSlackやTeamsから移行できますか？</div>
+                <div class="faq-answer">はい、簡単に移行できます。インポート機能により、過去の会話履歴もすべてRAG化して検索可能にできます。段階的な移行もサポートしています。</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">プライバシーやセキュリティは大丈夫ですか？</div>
+                <div class="faq-answer">メッセージ単位で「RAG化しない」設定が可能です。不適切な質問は自動でフィルタリングされ、すべてのデータは暗号化されて保存されます。SOC 2 Type II認証取得予定です。</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">どんな会社に向いていますか？</div>
+                <div class="faq-answer">特にリモートワーク中心のスタートアップ、知識集約型企業、エンジニアリング組織に最適です。「誰が何を知っているか分からない」課題を抱える組織全般におすすめします。</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">導入にどのくらい時間がかかりますか？</div>
+                <div class="faq-answer">基本的なセットアップは1日で完了します。RAGの構築は使用しながら自動で進むため、徐々に精度が向上していきます。通常、1週間程度で本格運用が可能です。</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">AIの回答精度はどのくらいですか？</div>
+                <div class="faq-answer">使用するほどに精度が向上します。初期段階でも85%以上の質問に有用な回答を提供でき、継続使用により90%以上に向上します。回答には信頼度スコアも表示されます。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="waitlist">
+        <div class="cta-content">
+            <h2 class="cta-title">今すぐ始めましょう</h2>
+            <p class="cta-subtitle">ベータ版は先着100社限定。初年度50% OFF</p>
+            <form class="email-form" onsubmit="handleSubmit(event)">
+                <input type="email" class="email-input" placeholder="メールアドレス" required>
+                <button type="submit" class="btn-primary">登録する</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2025 KnowledgeFlow. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input').value;
+            alert('ご登録ありがとうございます！\n\n' + email + ' 宛に詳細情報をお送りします。');
+            event.target.reset();
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
